@@ -9,3 +9,13 @@
     color: black;
     margin-bottom: 5px;
 }
+.btnUploadService{
+    border-radius: 4px;
+    border: 1px dashed red;
+    padding: 5px 10px;
+    margin: -20px 20px 0px 20px;
+    background: #e7e7e7;
+}
+.btnUploadService:hover{
+    background: #958e8e;
+}

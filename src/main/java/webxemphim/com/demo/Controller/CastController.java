@@ -57,7 +57,7 @@ public class CastController {
             return "redirect:/cast/findAll";
         } catch (Exception e) {
             e.printStackTrace();
-            return "admin/ViewCá";
+            return "admin/ViewCast";
         }
     }
 
@@ -66,7 +66,7 @@ public class CastController {
         castService.UpdateNation(cast, id);
         ra.addFlashAttribute("successMessage", "Sửa thành công!!!");
 
-        return "redirect:/nation/findAll";   // Redirect to the promotion list page after update
+        return "redirect:/cast/findAll";   // Redirect to the promotion list page after update
     }
 
     @GetMapping("/delete/{id}")
@@ -78,6 +78,6 @@ public class CastController {
         } catch (Exception e) {
             ra.addFlashAttribute("errorMessage", "Xóa thất bại!!!");
         }
-        return "redirect:/nation/findAll";   // Redirect to the promotion list page after update
+        return "redirect:/cast/findAll";   // Redirect to the promotion list page after update
     }
 }

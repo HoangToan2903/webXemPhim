@@ -31,35 +31,40 @@
                 <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
             </symbol>
         </svg>
-        <div th:if="${successMessage}" class="alert alert-success d-flex align-items-center" style="width: 99%" role="alert">
+        <div th:if="${successMessage}" class="alert alert-success d-flex align-items-center" style="width: 99%"
+             role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                 <use xlink:href="#check-circle-fill"/>
             </svg>
             <div>
                 <strong>[[${successMessage}]]</strong>
-                <button style="margin-left: 1000px" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button style="margin-left: 1000px" type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
 
             </div>
         </div>
-        <div th:if="${errorMessage}" class="alert alert-warning alert-dismissible fade show" role="alert" style="width: 99%" >
+        <div th:if="${errorMessage}" class="alert alert-warning alert-dismissible fade show" role="alert"
+             style="width: 99%">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
                 <use xlink:href="#exclamation-triangle-fill"/>
             </svg>
 
             <div>
                 <strong>[[${errorMessage}]]</strong>
-                <button style="margin-left: 1000px" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button style="margin-left: 1000px" type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
 
             </div>
         </div>
         <div class="form" style="margin-right: 10px">
-            <form  enctype="multipart/form-data" th:action="@{/cast/save}" th:object="${cast}" method="post" onsubmit="validate(event)">
+            <form enctype="multipart/form-data" th:action="@{/cast/save}" th:object="${cast}" method="post"
+                  onsubmit="validate(event)">
                 <input type="hidden" th:field="*{id}"/>
 
                 <div class="row g-2">
                     <div class="col-md">
                         <div class="form-floating">
-                            <input class="form-control"  th:field="*{name}" required>
+                            <input class="form-control" th:field="*{name}" required>
                             <label for="name">Tên diễn viên</label>
                         </div>
 
@@ -67,17 +72,25 @@
                 </div>
                 <br>
 
-                <div class="row g-2">
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <input class="form-control" type="file" id="image"  th:field="*{image}" required>
-                            <label for="name">Hình ảnh</label>
+                <div class="col-xl-5">
+                    <div class="imageService" style="margin: -23px 0px 0px 0px">
+                        <div class="date">
+                            <label>Hình ảnh</label>
+                            <input name="file" type="file" th:field="*{image}" id="image" hidden/>
+                            <img id="img" src="" alt=""
+                                 style="border-radius: 10px; filter: drop-shadow(2px 4px 6px black);margin: 25px 0px -70px 70px"
+                                 height="100"
+                                 width="70"
+                            >
                         </div>
-
+                        <div class="img-Service" style="margin: 10px 0px 0px -20px">
+                            <label for="image" class="btnUploadService">upload image</label>
+                        </div>
+                        <span id="imageFvl" style="color: red ; margin: 10px 0px 0px 0px"></span>
                     </div>
                 </div>
                 <br>
-                <button class="btn btn-primary" type="submit">Button</button>
+                <button class="btn btn-primary" type="submit">Thêm</button>
             </form>
         </div>
         <br>
@@ -95,8 +108,8 @@
             <tr th:each="cast,index : ${castList}">
                 <td th:text="${index.count}"></td>
                 <td>[[${cast.name}]]</td>
-                <td><img th:src="@{'http://localhost:8080/admin/img/' + ${cast.image}}"
-                         alt="..." style="width: 50px; height: 50px"></td>
+                <td><img th:src="@{'http://localhost:8080/admin/img/' + ${cast.image}}" class="card-img-top"
+                         alt="..." style="width: 202px; height: 200px"></td>
                 <td>
                     <a>
                         <button
@@ -131,7 +144,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="row g-3" th:object="${cast}" th:action="@{/cast/update/{id}(id=${cast.id})}" method="post">
+                    <form class="row g-3" th:object="${cast}" th:action="@{/cast/update/{id}(id=${cast.id})}"
+                          method="post">
                         <div style="display: none" class="col-md-6">
                             <label class="form-label">Id</label>
                             <input type="text" class="form-control" id="id" name="ID" th:value="${cast.id}"
@@ -160,4 +174,13 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
+<script>
+    var inputImg = document.getElementById('image');
+    var img = document.getElementById('img');
+    // Loop through each element and format its content to VND
+
+    inputImg.onchange = (e) => {
+        if (inputImg.files[0]) img.src = URL.createObjectURL(inputImg.files[0]);
+    };
+</script>
 </html>
