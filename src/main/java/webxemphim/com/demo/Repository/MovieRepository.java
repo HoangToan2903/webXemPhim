@@ -1,4 +1,4 @@
 package webxemphim.com.demo.Repository;
 
-public class MovieRepository {
+public interface MovieRepository {
 }

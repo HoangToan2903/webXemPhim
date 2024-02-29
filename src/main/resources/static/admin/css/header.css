@@ -1,0 +1,11 @@
+.admin{
+    height: 200px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;}
+.nav-item{
+    font-size: 20px;
+    color: black;
+    margin-bottom: 5px;
+}
