@@ -1,0 +1,51 @@
+
+.selec {
+    padding: 2px 4px;
+    margin: 0 0 4px 0;
+    border: 1px solid #e9e5e4;
+    border-radius: 3px;
+    outline: none;
+    width: 615px;
+    height: 37px;
+    margin-left: -2px;
+}
+button {
+    float: left;
+    position: relative;
+    height: 24px;
+    margin: 0 0 0 8px;
+    padding: 0 4px;
+    text-align: center;
+    line-height: 24px;
+    border: none;
+    border-radius: 3px;
+    color: #e7dcbe;
+    background: #f04e47;
+    outline: none;
+    cursor: pointer;
+}
+button:hover {
+    opacity: 0.8;
+}
+button:active {
+    top: 1px;
+}
+#wrap {
+    float: none;
+}
+.container div {
+    clear: left;
+    margin: 0px -7px 7px 16px;
+    line-height: 24px;
+}
+.container {
+    display: grid;
+    grid-template-columns: 0.2fr 0.2fr;}
+
+
+#wrap1 {
+    float: none;
+}
+#wrap2{
+    float: none;
+}

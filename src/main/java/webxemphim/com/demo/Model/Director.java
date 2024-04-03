@@ -9,8 +9,8 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "cast")
-public class Cast {
+@Table(name = "director")
+public class Director {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "ID")

@@ -37,15 +37,12 @@ public class CastController {
     public String SaveNation(Model model,
                              @RequestParam(name="id") String id,
                              @RequestParam(name = "name") String name,
-                             @RequestParam(name = "image") MultipartFile multipartFile,
                              RedirectAttributes ra){
-        uploadImage.handerUpLoadFile(multipartFile);
 
         try {
             Cast cast = Cast.builder()
                     .id(id)
                     .name(name)
-                    .image(multipartFile.getOriginalFilename())
                     .build();
 
             if (castService.SaveCast(cast) instanceof Cast) {

@@ -29,7 +29,6 @@ public class CastService {
     public  Cast UpdateNation(Cast cast, String id){
         Cast cast1 = findById(id);
         cast1.setName(cast.getName());
-        cast1.setImage(cast.getImage());
         return castRepository.save(cast1);
     }
 
