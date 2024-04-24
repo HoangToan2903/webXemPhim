@@ -57,7 +57,6 @@
                 <strong>[[${errorMessage}]]</strong>
                 <button style="margin-left: 1000px" type="button" class="btn-close" data-bs-dismiss="alert"
                         aria-label="Close"></button>
-
             </div>
         </div>
         <div class="form" style="margin-right: 10px">
@@ -129,37 +128,44 @@
 
 
                 <div class="row" style="margin-top: 4px;margin-left: -4px">
-                    <div class="row g-2 col">
-                        <div id="wrap">
-                            <select class="selec" name="cast">
-                                <option value="">Diễn viên</option>
-                                <option th:each="cast : ${castList}" th:value="${cast.id}" th:text="${cast.name}"></option>
-                            </select>
-                            <div class="container" id="container"></div>
+                    <div class="row  g-2 col">
+                        <div class=" d-flex justify-content-center align-items-center">
+                            <div class="d-flex text-left align-items-center w-100">
+                                <strong class="sl">Đạo diễn</strong>
+                                <select id="multiple-checkboxes" multiple="multiple" name="cast">
+                                    <option th:each="cast : ${castList}" th:value="${cast.id}"
+                                            th:text="${cast.name}">
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <br>
-                    <div class="row g-2 col">
-                        <div id="wrap1">
-                            <select class="selec" name="director">
-                                <option value="">Đạo diễn</option>
-                                <option th:each="director : ${directorList}" th:value="${director.id}" th:text="${director.name}"></option>
-                            </select>
-                            <div class="container" id="container1"></div>
+                    <div class="row  g-2 col">
+                        <div class=" d-flex justify-content-center align-items-center">
+                            <div class="d-flex text-left align-items-center w-100">
+                                <strong class="sl">Diễn viên</strong>
+                                <select id="multiple-checkboxess" multiple="multiple" name="director">
+                                    <option th:each="director : ${directorList}" th:value="${director.id}"
+                                            th:text="${director.name}">
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="row" style="margin-top: -4px;margin-left: -3px">
-                    <div class="row g-2 col">
-                        <div id="wrap2">
-                            <select class="selec" name="type">
-                                <option value="">Thể loại</option>
-                                <option th:each="type : ${typeList}" th:value="${type.id}"
-                                        th:text="${type.name}">
-                                </option>
-                            </select>
-                            <div class="container" id="container2"></div>
+                    <div class="row  g-2 col">
+                        <div class=" d-flex justify-content-center align-items-center">
+                            <div class="d-flex text-left align-items-center w-100">
+                                <strong class="sl">Thể loại</strong>
+                                <select id="multiple-checkboxesss" multiple="multiple" name="type">
+                                    <option th:each="type : ${typeList}" th:value="${type.id}"
+                                            th:text="${type.name}">
+                                    </option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -212,7 +218,7 @@
             </form>
         </div>
         <br>
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="width: 1250px">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -229,7 +235,7 @@
                     <td th:text="${index.count}"></td>
                     <td>[[${movie.name}]]</td>
                     <td>[[${movie.duration}]]</td>
-                    <td><img th:src="@{'http://localhost:8080/static/admin/img/' + ${movie.image}}"
+                    <td><img th:src="@{'http://localhost:8080/admin/assets/img/' + ${movie.image}}"
                              style="width: 50px; height: 50px"></td>
                     <td>
                         <a>
@@ -257,8 +263,8 @@
     </div>
 
 </div>
-<!--<th:block th:each="cast : ${castList}">-->
-<!--    <div class="modal" th:attrappend="id='exampleModal_' + ${cast.id}">-->
+<!--<th:block th:each="movie : ${movieList}">-->
+<!--    <div class="modal" th:attrappend="id='exampleModal_' + ${movie.id}">-->
 <!--        <div class="modal-dialog">-->
 <!--            <div class="modal-content">-->
 <!--                <div class="modal-header">-->
@@ -266,11 +272,11 @@
 <!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
 <!--                </div>-->
 <!--                <div class="modal-body">-->
-<!--                    <form class="row g-3" th:object="${cast}" th:action="@{/cast/update/{id}(id=${cast.id})}"-->
+<!--                    <form class="row g-3" th:object="${cast}" th:action="@{/movie/update/{id}(id=${movie.id})}"-->
 <!--                          method="post">-->
 <!--                        <div style="display: none" class="col-md-12">-->
 <!--                            <label class="form-label">Id</label>-->
-<!--                            <input type="text" class="form-control" id="id" name="ID" th:value="${cast.id}"-->
+<!--                            <input type="text" class="form-control" id="id" name="ID" th:value="${movie.id}"-->
 <!--                                   disabled-->
 <!--                                   required>-->
 <!--                        </div>-->
@@ -303,7 +309,12 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script th:src="@{/admin/js/movie.js}"></script>
+<script th:src="@{/admin/js/jquery.min.js}"></script>
+<script th:src="@{/admin/js/popper.js}"></script>
+<script th:src="@{/admin/js/bootstrap.min.js}"></script>
+<script th:src="@{/admin/js/bootstrap-multiselect.js}"></script>
+<script th:src="@{/admin/js/main.js}"></script>
+
 
 <script>
 

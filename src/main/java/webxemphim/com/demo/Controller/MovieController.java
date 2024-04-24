@@ -78,7 +78,6 @@ public class MovieController {
 
         try {
             Movie movie = Movie.builder()
-                    .id(id)
                     .duration(duration)
                     .name(name)
                     .description(description)
@@ -92,7 +91,7 @@ public class MovieController {
                     .casts(cast)
                     .namphathanh(namphathanh)
                     .build();
-
+            System.out.println("tôi là: "+ cast);
             if (movieService.SaveMovie(movie) instanceof Movie) {
                 model.addAttribute("successMessage", "Thêm thành công!");
             } else {
@@ -117,4 +116,13 @@ public class MovieController {
         }
         return "redirect:/movie/findAll";   // Redirect to the promotion list page after update
     }
+
+    @PostMapping("/update/{id}")
+    public String updatePromotion(@PathVariable(name = "id") String id, Movie movie, RedirectAttributes ra) {
+        movieService.updateMovie(id, movie);
+        ra.addFlashAttribute("successMessage", "Sửa thành công!!!");
+
+        return "redirect:/movie/findAll";   // Redirect to the promotion list page after update
+    }
+
 }
