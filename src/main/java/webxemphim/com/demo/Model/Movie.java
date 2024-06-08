@@ -46,10 +46,18 @@ public class Movie {
     @Column(name = "namphathanh", length = 1000)
     private Integer namphathanh;
 
+    @Column(name = "episodes")
+    private Integer episodes;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "nation_id")
     private Nation nation;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "style_id")
+    private Style style;
 
     @ManyToMany
     @JoinTable(

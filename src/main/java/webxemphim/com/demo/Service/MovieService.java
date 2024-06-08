@@ -39,8 +39,10 @@ public class MovieService {
         movieNew.setNamphathanh(movie.getNamphathanh());
         movieNew.setLink(movie.getLink());
         movieNew.setTypes(movie.getTypes());
+        movieNew.setEpisodes(movie.getEpisodes());
         movieNew.setDescription(movie.getDescription());
         movieNew.setNation(movie.getNation());
+        movieNew.setStyle(movie.getStyle());
         return movieRepository.save(movieNew);
     }
 

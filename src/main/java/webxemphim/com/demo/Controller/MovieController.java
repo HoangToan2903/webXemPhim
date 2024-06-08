@@ -34,6 +34,9 @@ public class MovieController {
     private DirectorService directorService;
 
     @Autowired
+    private StyleService styleService;
+
+    @Autowired
     private UploadImage uploadImage;
 
     @GetMapping("/findAll")
@@ -52,6 +55,9 @@ public class MovieController {
 
         List<Director> directorList = directorService.findAll();
         model.addAttribute("directorList", directorList);
+
+        List<Style> styleList = styleService.findAll();
+        model.addAttribute("styleList", styleList);
 
         model.addAttribute("movie", new Movie());
 
@@ -73,9 +79,10 @@ public class MovieController {
                              @RequestParam(name = "type") List<Type> type,
                              @RequestParam(name = "director") List<Director> director,
                              @RequestParam(name = "nation") Nation nation,
+                             @RequestParam(name = "style") Style style,
+                             @RequestParam(name = "episodes", required = false, defaultValue = "1") Integer episodes,
                              RedirectAttributes ra) {
         uploadImage.handerUpLoadFile(multipartFile);
-
         try {
             Movie movie = Movie.builder()
                     .duration(duration)
@@ -85,13 +92,15 @@ public class MovieController {
                     .link(link)
                     .image(multipartFile.getOriginalFilename())
                     .nation(nation)
+                    .style(style)
+                    .episodes(episodes)
                     .directors(director)
                     .types(type)
                     .status(status)
                     .casts(cast)
                     .namphathanh(namphathanh)
                     .build();
-            System.out.println("tôi là: "+ cast);
+
             if (movieService.SaveMovie(movie) instanceof Movie) {
                 model.addAttribute("successMessage", "Thêm thành công!");
             } else {

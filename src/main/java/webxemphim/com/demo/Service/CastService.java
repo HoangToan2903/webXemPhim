@@ -3,6 +3,7 @@ package webxemphim.com.demo.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webxemphim.com.demo.Model.Cast;
+import webxemphim.com.demo.Model.Director;
 import webxemphim.com.demo.Model.Nation;
 import webxemphim.com.demo.Repository.CastRepository;
 import webxemphim.com.demo.Repository.NationRepository;
@@ -26,10 +27,10 @@ public class CastService {
         return castRepository.findById(id).get();
     }
 
-    public  Cast UpdateNation(Cast cast, String id){
+    public Cast UpdateCast(Cast cast, String id){
         Cast cast1 = findById(id);
         cast1.setName(cast.getName());
-        return castRepository.save(cast1);
+        return  castRepository.save(cast1);
     }
 
     public void delete(String id) {

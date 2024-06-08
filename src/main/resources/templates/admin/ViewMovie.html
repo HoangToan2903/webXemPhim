@@ -95,14 +95,15 @@
                         </div>
                     </div>
                     <br>
-                    <div class="row g-2 col">
-                        <div class="col-md">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" th:field="*{link}" required>
-                                <label>Link phim</label>
-                            </div>
 
-                        </div>
+                    <div class="input-group mb-3 col" style="padding-top: 27px">
+                        <label class="input-group-text" for="inputGroupSelect01">Kiểu phim</label>
+                        <select name="style" class="form-select">
+                            <option selected>Choose...</option>
+                            <option th:each="style : ${styleList}" th:value="${style.id}"
+                                    th:text="${style.name}">
+                            </option>
+                        </select>
                     </div>
                 </div>
                 <br>
@@ -110,11 +111,13 @@
                     <div class="input-group mb-3 col">
                         <label class="input-group-text" for="inputGroupSelect01">Trạng thái</label>
                         <select name="status" class="form-select" id="inputGroupSelect01">
-                            <option selected>Choose...</option>
+                            <option selected disabled>Chọn...</option>
                             <option value="1">Đang chiếu</option>
                             <option value="2">Không chiếu</option>
                         </select>
+                        <p id="statusAlert" style="color: red; display: none;">Vui lòng chọn một trạng thái.</p>
                     </div>
+
                     <div class="input-group mb-3 col">
                         <label class="input-group-text" for="inputGroupSelect01">Quốc gia</label>
                         <select name="nation" class="form-select">
@@ -131,7 +134,7 @@
                     <div class="row  g-2 col">
                         <div class=" d-flex justify-content-center align-items-center">
                             <div class="d-flex text-left align-items-center w-100">
-                                <strong class="sl">Đạo diễn</strong>
+                                <strong class="sl">Diễn viên </strong>
                                 <select id="multiple-checkboxes" multiple="multiple" name="cast">
                                     <option th:each="cast : ${castList}" th:value="${cast.id}"
                                             th:text="${cast.name}">
@@ -144,7 +147,7 @@
                     <div class="row  g-2 col">
                         <div class=" d-flex justify-content-center align-items-center">
                             <div class="d-flex text-left align-items-center w-100">
-                                <strong class="sl">Diễn viên</strong>
+                                <strong class="sl">Đạo diễn</strong>
                                 <select id="multiple-checkboxess" multiple="multiple" name="director">
                                     <option th:each="director : ${directorList}" th:value="${director.id}"
                                             th:text="${director.name}">
@@ -173,7 +176,7 @@
                         <div class="col-md">
                             <div class="form-floating">
                                             <textarea type="text" class="form-control" th:field="*{description}"
-                                                      style="height: 100px"></textarea>
+                                                      style="height: 100px" required></textarea>
                                 <label>Mô tả</label>
                             </div>
 
@@ -212,6 +215,35 @@
                     </div>
                 </div>
                 <br>
+                <br>
+                <div class="row" style="margin-top: -4px;margin-left: -3px">
+                    <div class="row g-2 col" id="movieTypeDiv"
+                         style="margin-top: -4px;margin-left: -3px; display: none">
+                        <div class="row g-2 col">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" th:field="*{link}"
+                                           style="width: 585px;">
+                                    <label>Link phim</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-2 col" id="episodess" style="margin-top: -4px;margin-left: -3px; display: none">
+                        <div class="row g-2 col">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" th:field="*{episodes}"
+                                           style="width: 585px;">
+                                    <label>Số tập phim</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <br>
                 <button style="height: 40px" class="btn btn-primary" type="submit">Thêm</button>
                 <br>
@@ -263,46 +295,170 @@
     </div>
 
 </div>
-<!--<th:block th:each="movie : ${movieList}">-->
-<!--    <div class="modal" th:attrappend="id='exampleModal_' + ${movie.id}">-->
-<!--        <div class="modal-dialog">-->
-<!--            <div class="modal-content">-->
-<!--                <div class="modal-header">-->
-<!--                    <h5 class="modal-title">Chi tiết thể loại</h5>-->
-<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--                </div>-->
-<!--                <div class="modal-body">-->
-<!--                    <form class="row g-3" th:object="${cast}" th:action="@{/movie/update/{id}(id=${movie.id})}"-->
-<!--                          method="post">-->
-<!--                        <div style="display: none" class="col-md-12">-->
-<!--                            <label class="form-label">Id</label>-->
-<!--                            <input type="text" class="form-control" id="id" name="ID" th:value="${movie.id}"-->
-<!--                                   disabled-->
-<!--                                   required>-->
-<!--                        </div>-->
+<th:block th:each="movie : ${movieList}">
+    <div class="modal" th:attrappend="id='exampleModal_' + ${movie.id}">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:750px; margin-left: -80px">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chi tiết thể loại</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3" th:object="${movie}" th:action="@{/movie/update/{id}(id=${movie.id})}"
+                          method="post">
+                        <div style="display: none" class="col-md-12">
+                            <label class="form-label">Id</label>
+                            <input type="text" class="form-control" id="id" name="ID" th:value="${movie.id}"
+                                   disabled
+                                   required>
+                        </div>
+                        <div class="row" style="margin-left: 1px">
+                            <div class="row g-2 col">
+                                <label class="form-label"> Tên phim</label>
+                                <input type="text" class="form-control" id="name" name="name" th:value="${movie.name}"
+                                       required>
+                            </div>
 
-<!--                        <div class="col-md-12">-->
-<!--                            <label class="form-label"> Tên diễn viên</label>-->
-<!--                            <input type="text" class="form-control" id="name" name="name" th:value="${cast.name}"-->
-<!--                                   required>-->
-<!--                        </div>-->
-<!--                        <br>-->
-<!--                        <div class="col-md-12">-->
-<!--                            <label class="form-label"> Hình ảnh</label>-->
-<!--                            <img th:src="@{'http://localhost:8080/admin/img/' + ${cast.image}}"-->
-<!--                                 style="width: 50px; height: 50px">-->
-<!--                        </div>-->
-<!--                        <div class="modal-footer">-->
-<!--                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>-->
-<!--                            <button type="submit" class="btn btn-primary">Sửa</button>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
+                            <div class="row g-2 col">
+                                <label class="form-label"> Thời lượng phim</label>
+                                <input type="text" class="form-control" id="duration" name="duration"
+                                       th:value="${movie.duration}"
+                                       required>
+                            </div>
+                        </div>
 
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</th:block>-->
+                        <div class="row" style="margin-left: 1px">
+                            <div class="row g-2 col">
+                                <label class="form-label"> Trailer phim</label>
+                                <input type="text" class="form-control" id="trailer" name="trailer"
+                                       th:value="${movie.trailer}"
+                                       required>
+                            </div>
+                            <br>
+                            <div class="row g-2 col">
+                                <label class="form-label"> Link phim</label>
+                                <input type="text" class="form-control" id="link" name="link" th:value="${movie.link}"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left: 1px">
+
+                            <div class="row g-2 col">
+                                <label class="form-label"> Kiểu phim </label>
+                                <select name="style" class="form-select" aria-label="Default select example">
+                                    <th:block th:each="style : ${styleList}">
+                                        <option th:value="${style.id}" th:text="${style.name}"
+                                                th:selected="${style.id == movie.style.id}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="row g-2 col">
+                                <label class="form-label"> Số tập phim</label>
+                                <input type="text" class="form-control" id="episodes" name="episodes"
+                                       th:value="${movie.episodes}"
+                                       required>
+                            </div>
+
+                        </div>
+                        <div class="row" style="margin-left: 1px">
+                            <div class="row g-2 col">
+                                <label class="form-label"> Trạng thái </label>
+                                <select name="status" class="form-select" aria-label="Default select example">
+                                    <option value="0" th:selected="${movie.status == 0}">Không chiếu</option>
+                                    <option value="1" th:selected="${movie.status == 1}">Đang chiếu</option>
+
+                                </select>
+                            </div>
+                            <br>
+                            <div class="row g-2 col">
+                                <label class="form-label"> Quốc gia </label>
+                                <select name="nation" class="form-select" aria-label="Default select example">
+                                    <th:block th:each="nation : ${nationList}">
+                                        <option th:value="${nation.id}" th:text="${nation.name}"
+                                                th:selected="${nation.id == movie.nation.id}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left: 1px">
+                            <div class="row g-2 col">
+                                <div class=" d-flex justify-content-center align-items-center">
+                                    <div class="d-flex text-left align-items-center w-100">
+                                        <strong class="sl">Diễn viên</strong>
+                                        <select id="multiple-checkboxessss" multiple="multiple" name="cast">
+                                            <option th:each="cast : ${castList}" th:value="${cast.id}"
+                                                    th:text="${cast.name}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row g-2 col">
+                                <div class=" d-flex justify-content-center align-items-center">
+                                    <div class="d-flex text-left align-items-center w-100">
+                                        <strong class="sl">Đạo diễn</strong>
+                                        <select id="multiple-checkboxesssss" multiple="multiple" name="director">
+                                            <option th:each="director : ${directorList}" th:value="${director.id}"
+                                                    th:text="${director.name}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left: 1px">
+                            <div class="row g-2 col">
+                                <div class=" d-flex justify-content-center align-items-center">
+                                    <div class="d-flex text-left align-items-center w-100">
+                                        <strong class="sl">Thể loại</strong>
+                                        <select id="multiple-checkboxessssss" multiple="multiple" name="type">
+                                            <option th:each="type : ${typeList}" th:value="${type.id}"
+                                                    th:text="${type.name}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row g-2 col">
+                                <div class="col-md">
+                                    <div class="form-floating">
+                                            <textarea type="text" class="form-control" id="description"
+                                                      name="description" th:text="${movie.description}"
+                                                      style="height: 100px"></textarea>
+                                        <label>Mô tả</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="date">
+                                <label>Hình ảnh</label>
+                                <input name="image" type="file" id="image1" hidden />
+                                <img id="img1" th:src="@{'http://localhost:8080/admin/assets/img/' + ${movie.image}}" alt=""
+                                     style="border-radius: 10px; filter: drop-shadow(2px 4px 6px black);margin: -20px 0px -70px 70px"
+                                     height="100" width="90"
+                                     th:if="${movie.image != null}"
+                                >
+                            </div>
+                            <div class="img-Service" style="margin: 10px 0px 20px -20px">
+                                <label for="image1" class="btnUploadService">Upload Image</label>
+                            </div>
+                            <input name="image" th:value="${movie.image}" th:if="${movie.image != null}" hidden/>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
+                            <button type="submit" class="btn btn-primary">Sửa</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</th:block>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -325,5 +481,36 @@
     inputImg.onchange = (e) => {
         if (inputImg.files[0]) img.src = URL.createObjectURL(inputImg.files[0]);
     };
+
+
+    var inputImg1 = document.getElementById('image1');
+    var img1 = document.getElementById('img1');
+    // Loop through each element and format its content to VND
+
+    inputImg1.onchange = (e) => {
+        if (inputImg1.files[0]) img1.src = URL.createObjectURL(inputImg1.files[0]);
+    };
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var selectElement = document.getElementsByName("style")[0]; // Lấy select element
+        var movieTypeDiv = document.getElementById("movieTypeDiv"); // Lấy div cần điều khiển
+        var episodes = document.getElementById("episodess"); // Lấy div cần điều khiển
+
+        selectElement.addEventListener("change", function () {
+            // Kiểm tra nếu text đang được chọn là "Phim lẻ" thì hiển thị div, ngược lại ẩn đi
+            if (selectElement.options[selectElement.selectedIndex].text === "Phim lẻ") {
+                movieTypeDiv.style.display = "block"; // Hiển thị div
+                episodes.style.display = "none"; // Ẩn div
+            } else if (selectElement.options[selectElement.selectedIndex].text === "Phim bộ") {
+                episodes.style.display = "block"; // Hiển thị div
+                movieTypeDiv.style.display = "none"; // Ẩn div
+            } else {
+                movieTypeDiv.style.display = "none"; // Ẩn div
+                episodes.style.display = "none"; // Ẩn div
+            }
+        });
+    });
+
+
 </script>
 </html>

@@ -7,70 +7,70 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import webxemphim.com.demo.Model.Nation;
-import webxemphim.com.demo.Model.Type;
+import webxemphim.com.demo.Model.Style;
 import webxemphim.com.demo.Service.NationService;
-import webxemphim.com.demo.Service.TypeService;
+import webxemphim.com.demo.Service.StyleService;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/type")
-
-public class TypeController {
+@RequestMapping("/style")
+public class StyleController {
     @Autowired
-    private TypeService typeService;
+    private StyleService styleService;
 
 
     @GetMapping("/findAll")
-    public String FindAll(Model model, Type type){
-        List<Type> typeList = typeService.findAll();
-        model.addAttribute("typeList",typeList);
-        model.addAttribute("tye", new Type());
+    public String FindAll(Model model, Style style){
+        List<Style> styleList = styleService.findAll();
+        model.addAttribute("styleList",styleList);
+        model.addAttribute("style", new Style());
 
-        return "admin/ViewType";
+        return "admin/ViewStyle";
     }
 
     @PostMapping("/save")
-    public String SaveNation(Model model,
+    public String SaveStyle(Model model,
                              @RequestParam(name="id") String id,
                              @RequestParam(name = "name") String name,
                              RedirectAttributes ra){
 
         try {
-            Type type = Type.builder()
+            Style style = Style.builder()
                     .id(id)
                     .name(name)
                     .build();
 
-            if (typeService.SaveType(type) instanceof Type) {
+            if (styleService.SaveStyle(style) instanceof Style) {
                 ra.addFlashAttribute("successMessage", "Thêm thành công");
             } else {
                 ra.addFlashAttribute("errorMessage", "Thêm thất bại");
             }
 //            model.addAttribute("nation", new Nation());
-            return "redirect:/type/findAll";
+            return "redirect:/style/findAll";
         } catch (Exception e) {
             e.printStackTrace();
-            return "admin/ViewType";
+            return "admin/ViewStyle";
         }
     }
 
     @PostMapping("/update/{id}")
-    public String updatePromotion(@PathVariable(name = "id") String id, Type type, RedirectAttributes ra) {
-        typeService.UpdateType(type, id);
+    public String updatePromotion(@PathVariable(name = "id") String id, Style style, RedirectAttributes ra) {
+        styleService.UpdateStyle(style, id);
         ra.addFlashAttribute("successMessage", "Sửa thành công!!!");
 
-        return "redirect:/type/findAll";   // Redirect to the promotion list page after update
+        return "redirect:/style/findAll";   // Redirect to the promotion list page after update
     }
 
     @GetMapping("/delete/{id}")
+    @Operation(summary = "[Xóa dữ liệu room]")
     public String deleteNation(@PathVariable(name = "id") String id, RedirectAttributes ra) {
         try {
-            typeService.delete(id);
+            styleService.delete(id);
             ra.addFlashAttribute("successMessage", "Xóa thành công!!!");
         } catch (Exception e) {
             ra.addFlashAttribute("errorMessage", "Xóa thất bại!!!");
         }
-        return "redirect:/type/findAll";   // Redirect to the promotion list page after update
+        return "redirect:/style/findAll";   // Redirect to the promotion list page after update
     }
 }

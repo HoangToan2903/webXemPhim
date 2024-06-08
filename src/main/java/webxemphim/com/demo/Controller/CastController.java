@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import webxemphim.com.demo.Model.Cast;
+import webxemphim.com.demo.Model.Director;
 import webxemphim.com.demo.Model.Nation;
 import webxemphim.com.demo.Service.CastService;
 import webxemphim.com.demo.Service.NationService;
@@ -60,7 +61,7 @@ public class CastController {
 
     @PostMapping("/update/{id}")
     public String updatePromotion(@PathVariable(name = "id") String id, Cast cast, RedirectAttributes ra) {
-        castService.UpdateNation(cast, id);
+        castService.UpdateCast(cast, id);
         ra.addFlashAttribute("successMessage", "Sửa thành công!!!");
 
         return "redirect:/cast/findAll";   // Redirect to the promotion list page after update
