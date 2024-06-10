@@ -256,6 +256,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Tên phim</th>
                 <th scope="col">Thời lượng phim</th>
+                <th scope="col">Số tập phim</th>
                 <th scope="col">Hình ảnh</th>
                 <th scope="col">Acction</th>
 
@@ -267,6 +268,7 @@
                     <td th:text="${index.count}"></td>
                     <td>[[${movie.name}]]</td>
                     <td>[[${movie.duration}]]</td>
+                    <td>[[${movie.episodes}]]</td>
                     <td><img th:src="@{'http://localhost:8080/admin/assets/img/' + ${movie.image}}"
                              style="width: 50px; height: 50px"></td>
                     <td>
@@ -337,7 +339,7 @@
                             <br>
                             <div class="row g-2 col">
                                 <label class="form-label"> Link phim</label>
-                                <input type="text" class="form-control" id="link" name="link" th:value="${movie.link}"
+                                <input type="text" class="form-control" id="linkInput" name="link" th:value="${movie.link}"
                                        required>
                             </div>
                         </div>
@@ -509,6 +511,27 @@
                 episodes.style.display = "none"; // Ẩn div
             }
         });
+    });
+
+
+
+    let buttonElement = document.querySelector('button.btn-outline-primary');
+
+    // Adding an event listener to the button for the 'click' event
+    buttonElement.addEventListener('click', function() {
+        // Retrieving the input value when the button is clicked
+        let linkInput = document.getElementById("linkInput");
+        let linkValue = linkInput.value;
+
+        // Using the value retrieved from the input field
+        console.log(linkValue);  // You can replace `console.log` with any other action you want to perform with the retrieved value
+        if (linkValue.trim() === '') {
+            // If the input field is empty, disable it
+            linkInput.disabled = true;
+        } else {
+            // If the input field is not empty, enable it
+            linkInput.disabled = false;
+        }
     });
 
 
