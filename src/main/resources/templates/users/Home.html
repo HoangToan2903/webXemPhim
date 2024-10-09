@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" th:href="@{/users/css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/users/css/footer.css}"/>
+    <link rel="stylesheet" th:href="@{/users/css/header.css}"/>
+</head>
+<body>
+<div class="col-sm-2">
+    <div th:replace="~{/layout/Header_users :: header}"></div>
+</div>
+<!-- <div class="hero"></div> -->
+
+<section class="home">
+    <div class="product-list-container">
+        <div class="product-list" id="productList">
+            <!-- Product 1 -->
+
+            <th:block th:each="movie : ${movieNew}">
+                <div class="product-card">
+                    <div class="new-badge">New</div>
+                    <img th:src="@{'http://localhost:8080/admin/assets/img/' + ${movie.image}}" alt="Product 1 Image">
+                    <h3>[[${movie.name}]]</h3>
+                    <p>Năm phát hành: [[${movie.namphathanh}]]</p>
+                </div>
+            </th:block>
+
+
+            <!-- Product 2 -->
+
+        </div>
+    </div>
+    <div id="scrollRight" class="scroll-icon">
+        <i class="fas fa-arrow-right"></i>
+    </div>
+</section>
+<!-- phim hanh dong -->
+<h1 style="font-size: 30px; margin-left: 220px; color: white;">Phim hành động mới nhất</h1>
+
+<div class="slider owl-carousel">
+    <th:block th:each="movie : ${movieByHanhDong}">
+        <div class="card">
+            <div class="img">
+                <img th:src="@{'http://localhost:8080/admin/assets/img/' + ${movie.image}}" alt="Product 1 Image">
+            </div>
+            <div class="content">
+                <div class="title">
+                    [[${movie.name}]]
+                </div>
+                <div class="sub-title">
+                    Năm phát hành: [[${movie.namphathanh}]]
+                </div>
+                <p>
+                    [[${movie.description}]]
+                </p>
+                <a href="https://en.wikipedia.org/wiki/Sigiriya" target="_blank">
+                    <button>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </th:block>
+
+
+</div>
+
+<h1 style="font-size: 30px; margin-left: 220px; color: white;">Phim hài mới nhất</h1>
+
+<div class="slider owl-carousel">
+    <th:block th:each="movie : ${movieByHai}">
+        <div class="card">
+            <div class="img">
+                <img th:src="@{'http://localhost:8080/admin/assets/img/' + ${movie.image}}" alt="Product 1 Image">
+            </div>
+            <div class="content">
+                <div class="title">
+                    [[${movie.name}]]
+                </div>
+                <div class="sub-title">
+                    Năm phát hành: [[${movie.namphathanh}]]
+                </div>
+                <p>
+                    [[${movie.description}]]
+                </p>
+                <a href="https://en.wikipedia.org/wiki/Sigiriya" target="_blank">
+                    <button>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </th:block>
+
+
+</div>
+<h1 style="font-size: 30px; margin-left: 220px; color: white;">Phim bộ mới nhất</h1>
+
+<div class="slider owl-carousel">
+    <th:block th:each="movie : ${movieBo}">
+        <div class="card">
+            <div class="img">
+                <img th:src="@{'http://localhost:8080/admin/assets/img/' + ${movie.image}}" alt="Product 1 Image">
+            </div>
+            <div class="content">
+                <div class="title">
+                    [[${movie.name}]]
+                </div>
+                <div class="sub-title">
+                    Năm phát hành: [[${movie.namphathanh}]]
+                </div>
+                <p>
+                    [[${movie.description}]]
+                </p>
+                <a href="https://en.wikipedia.org/wiki/Sigiriya" target="_blank">
+                    <button>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </th:block>
+
+
+</div>
+<br>
+
+<div class="footer">
+    <div class="contain">
+        <div class="col">
+            <h1>Phim mới</h1>
+            <ul>
+                <li>Phim Tình Cảm</li>
+                <li>Phim Bách Hợp</li>
+                <li>Phim Cổ Trang</li>
+                <li>Phim Hài</li>
+
+            </ul>
+        </div>
+        <div class="col">
+            <h1>Phim hay</h1>
+            <ul>
+                <li>Phim Trung Quốc</li>
+                <li>Phim Hàn Quốc</li>
+                <li>Phim Nhật Bản</li>
+                <li>Phim Thái Lan</li>
+                <li>Phim Âu Mỹ</li>
+            </ul>
+        </div>
+        <div class="col">
+            <h1>Thông tin</h1>
+            <ul>
+                <li>Liên hệ</li>
+                <li>Về chúng tôi</li>
+                <li>Điều khoản sử dụng</li>
+                <li>Vấn đề bản quyền</li>
+                <li>Chính sách bảo mật</li>
+            </ul>
+        </div>
+
+        <div class="col social">
+            <h1>Social</h1>
+            <ul>
+                <li><i class="fa-brands fa-facebook"></i>
+                </li>
+                <li><i class="fa-brands fa-tiktok"></i></li>
+                <li><i class="fa-solid fa-envelope"></i></li>
+                <li><i class="fa-solid fa-phone"></i></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</body>
+<script th:src="@{/users/js/home.js}"></script>
+<script>
+    $(".slider").owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 2000, //2000ms = 2s;
+        autoplayHoverPause: true,
+    });
+
+    var movie = [[${movieByHanhDong}]]
+    console.log(movie)
+</script>
+</html>

@@ -1,6 +1,8 @@
 package webxemphim.com.demo.Controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import webxemphim.com.demo.Model.*;
 import webxemphim.com.demo.Service.*;
 import webxemphim.com.demo.Util.UploadImage;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -38,6 +41,8 @@ public class MovieController {
 
     @Autowired
     private UploadImage uploadImage;
+    @Autowired
+    private Movie_EpisodesService movie_episodesService;
 
     @GetMapping("/findAll")
     public String FindAll(Model model) {
@@ -84,6 +89,7 @@ public class MovieController {
                              RedirectAttributes ra) {
         uploadImage.handerUpLoadFile(multipartFile);
         try {
+            LocalDateTime currentDateTime = LocalDateTime.now();
             Movie movie = Movie.builder()
                     .duration(duration)
                     .name(name)
@@ -98,6 +104,7 @@ public class MovieController {
                     .types(type)
                     .status(status)
                     .casts(cast)
+                    .start_date(currentDateTime)
                     .namphathanh(namphathanh)
                     .build();
 
@@ -133,5 +140,19 @@ public class MovieController {
 
         return "redirect:/movie/findAll";   // Redirect to the promotion list page after update
     }
+    @GetMapping("/{id}")
+    public String showEditForm(@PathVariable("id") String id, Model model, HttpServletRequest request) {
+        Movie movie = movieService.findById(id);
+        model.addAttribute("movie", movie);
 
+        List<Movie> movieList = movieService.findAll();
+        model.addAttribute("movieList", movieList);
+
+        List<Movie_Episodes> movie_episodesList = movie_episodesService.findAll();
+        model.addAttribute("movie_episodesList", movie_episodesList);
+        HttpSession session = request.getSession();
+        session.setAttribute("movie", movie);
+        model.addAttribute("movie_episodes" , new Movie_Episodes());
+        return "admin/ViewMovie_episodes";
+    }
 }

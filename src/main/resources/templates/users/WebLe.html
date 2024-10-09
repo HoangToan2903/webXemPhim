@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" th:href="@{/users/css/weble.css}"/>
+    <link rel="stylesheet" th:href="@{/users/css/footer.css}"/>
+    <link rel="stylesheet" th:href="@{/users/css/header.css}"/>
+</head>
+<body>
+<div class="col-sm-2">
+    <div th:replace="~{/layout/Header_users :: header}"></div>
+</div>
+<section class="home">
+    <video src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" controls></video>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <div class="card-main">
+        <div class="card-img">
+            <img src="https://i.ibb.co/vhKYByB/cardimg.jpg" alt="">
+        </div>
+        <div class="card-content">
+            <h3 class="card-title">Nhu Đạo Long Hổ Bang</h3>
+            <p class="card-description">
+                95 phút <br>
+                Nhật bản <br>
+                Phim hành động <br>
+
+            </p>
+            <div class="container">
+                <b>Đánh giá</b>
+                <div class="star-rating">
+                    <input type="radio" name="rate" id="rate-5">
+                    <label for="rate-5" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-4">
+                    <label for="rate-4" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-3">
+                    <label for="rate-3" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-2">
+                    <label for="rate-2" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id="rate-1">
+                    <label for="rate-1" class="fas fa-star"></label>
+                    <form action="#">
+                        <header></header>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div>
+        <!-- Tab items -->
+        <div class="tabs">
+            <div class="tab-item active">
+
+                Thông tin
+            </div>
+            <div class="tab-item">
+
+                Diễn viên
+            </div>
+
+            <div class="line"></div>
+        </div>
+        <!-- Tab content -->
+        <div class="tab-content">
+            <div class="tab-pane active">
+                <h2>Tóm tắt</h2>
+                <p>React makes it painless to create interactive UIs. Design simple views for each state in your
+                    application, and React will efficiently update and render just the right components when your
+                    data
+                    changes.</p>
+            </div>
+            <div class="tab-pane">
+                <h2>Đạo diễn</h2>
+                <p>Angular is an application design framework and development platform for creating efficient and
+                    sophisticated single-page apps.</p>
+                <br>
+                <hr>
+                <br>
+                <h2>Diễn viên</h2>
+                <p>Angular is an application design framework and development platform for creating efficient and
+                    sophisticated single-page apps.</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <br>
+    <b style="color: white;">Chia sẻ : <i class="fa-brands fa-facebook"></i> <i
+            class="fa-brands fa-twitter"></i></b>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <h3 style="color: white;">Phim mới</h3>
+
+    <div class="product-list-container">
+        <div class="product-list" id="productList">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="new-badge">New</div>
+                <img src="img/1.png" alt="Product 1 Image">
+                <h3>Product 1</h3>
+                <p>This is product 1.</p>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/150x150?sig=2" alt="Product 2 Image">
+                <h3>Product 2</h3>
+                <p>This is product 2.</p>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="new-badge">New</div>
+                <img src="https://source.unsplash.com/random/150x150?sig=3" alt="Product 3 Image">
+                <h3>Product 3</h3>
+                <p>This is product 3.</p>
+            </div>
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/150x150?sig=4" alt="Product 4 Image">
+                <h3>Product 4</h3>
+                <p>This is product 4.</p>
+            </div>
+            <!-- Product 5 -->
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/150x150?sig=5" alt="Product 5 Image">
+                <h3>Product 5</h3>
+                <p>This is product 5.</p>
+            </div>
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="new-badge">New</div>
+                <img src="https://source.unsplash.com/random/150x150?sig=6" alt="Product 6 Image">
+                <h3>Product 6</h3>
+                <p>This is product 6.</p>
+            </div>
+            <!-- Product 7 -->
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/150x150?sig=7" alt="Product 7 Image">
+                <h3>Product 7</h3>
+                <p>This is product 7.</p>
+            </div>
+            <!-- Product 8 -->
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/150x150?sig=8" alt="Product 8 Image">
+                <h3>Product 8</h3>
+                <p>This is product 8.</p>
+            </div>
+            <!-- Product 9 -->
+            <div class="product-card">
+                <img src="https://source.unsplash.com/random/150x150?sig=9" alt="Product 9 Image">
+                <h3>Product 9</h3>
+                <p>This is product 9.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
+
+<br>
+<div class="footer">
+    <div class="contain">
+        <div class="col">
+            <h1>Phim mới</h1>
+            <ul>
+                <li>Phim Tình Cảm</li>
+                <li>Phim Bách Hợp</li>
+                <li>Phim Cổ Trang</li>
+                <li>Phim Hài</li>
+
+            </ul>
+        </div>
+        <div class="col">
+            <h1>Phim hay</h1>
+            <ul>
+                <li>Phim Trung Quốc</li>
+                <li>Phim Hàn Quốc</li>
+                <li>Phim Nhật Bản</li>
+                <li>Phim Thái Lan</li>
+                <li>Phim Âu Mỹ</li>
+            </ul>
+        </div>
+        <div class="col">
+            <h1>Thông tin</h1>
+            <ul>
+                <li>Liên hệ </li>
+                <li>Về chúng tôi</li>
+                <li>Điều khoản sử dụng</li>
+                <li>Vấn đề bản quyền</li>
+                <li>Chính sách bảo mật</li>
+            </ul>
+        </div>
+
+        <div class="col social">
+            <h1>Social</h1>
+            <ul>
+                <li><i class="fa-brands fa-facebook"></i>
+                </li>
+                <li><i class="fa-brands fa-tiktok"></i></li>
+                <li><i class="fa-solid fa-envelope"></i></li>
+                <li><i class="fa-solid fa-phone"></i></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</body>
+<script th:src="@{/users/js/weble.js}"></script>
+<script>
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+
+    const tabs = $$(".tab-item");
+    const panes = $$(".tab-pane");
+
+    const tabActive = $(".tab-item.active");
+    const line = $(".tabs .line");
+
+    // SonDN fixed - Active size wrong size on first load.
+    // Original post: https://www.facebook.com/groups/649972919142215/?multi_permalinks=1175881616551340
+    requestIdleCallback(function () {
+        line.style.left = tabActive.offsetLeft + "px";
+        line.style.width = tabActive.offsetWidth + "px";
+    });
+
+    tabs.forEach((tab, index) => {
+        const pane = panes[index];
+
+        tab.onclick = function () {
+            $(".tab-item.active").classList.remove("active");
+            $(".tab-pane.active").classList.remove("active");
+
+            line.style.left = this.offsetLeft + "px";
+            line.style.width = this.offsetWidth + "px";
+
+            this.classList.add("active");
+            pane.classList.add("active");
+        };
+    });
+</script>
+</html>

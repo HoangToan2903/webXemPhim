@@ -60,130 +60,152 @@
             </div>
         </div>
         <div class="form" style="margin-right: 10px">
-            <form enctype="multipart/form-data" th:action="@{/movie/save}" th:object="${movie}" method="post">
+            <form enctype="multipart/form-data" id="form-1" th:action="@{/movie/save}" th:object="${movie}"
+                  method="post">
                 <input type="hidden" th:field="*{id}"/>
+
                 <div class="row">
-                    <div class="row g-2 col">
+                    <div class="row g-2 col form-group">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" class="form-control" th:field="*{name}" required>
+                                <input type="text" class="form-control" id="fullname" name="fullname" th:field="*{name}">
                                 <label>Tên phim</label>
                             </div>
-
+                            <span class="form-message"></span>
                         </div>
                     </div>
                     <br>
-                    <div class="row g-2 col">
+                    <div class="row g-2 col form-group">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="number" class="form-control" th:field="*{duration}" required>
+                                <input type="number" class="form-control" id="durationn" name="durationn" th:field="*{duration}">
                                 <label>Thời lượng phim</label>
                             </div>
-
+                            <span class="form-message"></span>
                         </div>
                     </div>
                 </div>
-                <br>
+
                 <div class="row">
-                    <div class="row g-2 col">
+                    <div class="row g-2 col form-group">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" class="form-control" th:field="*{trailer}" required>
+                                <input type="text" class="form-control" id="trailerr" name="trailerr" th:field="*{trailer}">
                                 <label>Trailer phim</label>
                             </div>
+                            <span class="form-message"></span>
 
                         </div>
                     </div>
                     <br>
-
-                    <div class="input-group mb-3 col" style="padding-top: 27px">
-                        <label class="input-group-text" for="inputGroupSelect01">Kiểu phim</label>
-                        <select name="style" class="form-select">
-                            <option selected>Choose...</option>
-                            <option th:each="style : ${styleList}" th:value="${style.id}"
-                                    th:text="${style.name}">
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <br>
-                <div class="row" style="margin-top: 10px;margin-left: -18px">
-                    <div class="input-group mb-3 col">
-                        <label class="input-group-text" for="inputGroupSelect01">Trạng thái</label>
-                        <select name="status" class="form-select" id="inputGroupSelect01">
-                            <option selected disabled>Chọn...</option>
-                            <option value="1">Đang chiếu</option>
-                            <option value="2">Không chiếu</option>
-                        </select>
-                        <p id="statusAlert" style="color: red; display: none;">Vui lòng chọn một trạng thái.</p>
-                    </div>
-
-                    <div class="input-group mb-3 col">
-                        <label class="input-group-text" for="inputGroupSelect01">Quốc gia</label>
-                        <select name="nation" class="form-select">
-                            <option selected>Choose...</option>
-                            <option th:each="nation : ${nationList}" th:value="${nation.id}"
-                                    th:text="${nation.name}">
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-
-                <div class="row" style="margin-top: 4px;margin-left: -4px">
-                    <div class="row  g-2 col">
-                        <div class=" d-flex justify-content-center align-items-center">
-                            <div class="d-flex text-left align-items-center w-100">
-                                <strong class="sl">Diễn viên </strong>
-                                <select id="multiple-checkboxes" multiple="multiple" name="cast">
-                                    <option th:each="cast : ${castList}" th:value="${cast.id}"
-                                            th:text="${cast.name}">
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row  g-2 col">
-                        <div class=" d-flex justify-content-center align-items-center">
-                            <div class="d-flex text-left align-items-center w-100">
-                                <strong class="sl">Đạo diễn</strong>
-                                <select id="multiple-checkboxess" multiple="multiple" name="director">
-                                    <option th:each="director : ${directorList}" th:value="${director.id}"
-                                            th:text="${director.name}">
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="row" style="margin-top: -4px;margin-left: -3px">
-                    <div class="row  g-2 col">
-                        <div class=" d-flex justify-content-center align-items-center">
-                            <div class="d-flex text-left align-items-center w-100">
-                                <strong class="sl">Thể loại</strong>
-                                <select id="multiple-checkboxesss" multiple="multiple" name="type">
-                                    <option th:each="type : ${typeList}" th:value="${type.id}"
-                                            th:text="${type.name}">
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row g-2 col">
+                    <div class="row g-2 col form-group">
                         <div class="col-md">
                             <div class="form-floating">
-                                            <textarea type="text" class="form-control" th:field="*{description}"
-                                                      style="height: 100px" required></textarea>
-                                <label>Mô tả</label>
+                                <input type="number" class="form-control" id="namphathanhh" name="namphathanhh" th:field="*{namphathanh}">
+                                <label>Năm phát hành</label>
                             </div>
-
+                            <span class="form-message"></span>
                         </div>
+                    </div>
+
+                </div>
+
+                <div class="row" style="margin-top: 15px;margin-left: -18px">
+                    <div class=" form-group mb-3 col">
+                        <div class="input-group ">
+                            <label for="trangthaii" class="input-group-text">Trạng thái</label>
+                            <select id="trangthaii" name="status" class="form-select">
+                                <option value="" selected disabled>Chọn...</option>
+                                <option value="1">Đang chiếu</option>
+                                <option value="2">Không chiếu</option>
+                            </select>
+                        </div>
+
+                        <div><span class="form-message"></span></div>
+
+                    </div>
+
+                    <div class=" form-group mb-3 col">
+                        <div class="input-group ">
+                            <label for="quocgiaa" class="input-group-text">Quốc gia</label>
+                            <select id="quocgiaa" name="nation" class="form-select">
+                                <option value="" selected>Choose...</option>
+                                <option th:each="nation : ${nationList}" th:value="${nation.id}"
+                                        th:text="${nation.name}">
+                                </option>
+                            </select>
+                        </div>
+                        <div><span class="form-message"></span></div>
                     </div>
                 </div>
 
+
+                <div class="row" style="margin-top: 20px;margin-left: -25px">
+                    <div class=" form-group mb-3 col">
+                        <div class="input-group ">
+                            <label for="kieuphimm" class="input-group-text">Kiểu phim</label>
+                            <select id="kieuphimm" name="style" class="form-select">
+                                <option value="" selected>Choose...</option>
+                                <option th:each="style : ${styleList}" th:value="${style.id}"
+                                        th:text="${style.name}">
+                                </option>
+                            </select>
+                        </div>
+                        <div><span class="form-message"></span></div>
+                    </div>
+                    <div class=" form-group g-2 col" style="margin-top: -7px">
+                        <div class="row  ">
+                            <div class=" d-flex justify-content-center align-items-center">
+                                <div class="d-flex text-left align-items-center w-100">
+                                    <strong class="sl">Diễn viên </strong>
+                                    <select id="multiple-checkboxes" multiple="multiple" name="cast">
+                                        <option th:each="cast : ${castList}" th:value="${cast.id}"
+                                                th:text="${cast.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div><span class="form-message"></span></div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row" style="margin-top: -15px;margin-left: -3px">
+                    <div class=" form-group g-2 col">
+                        <div class="row ">
+                            <div class=" d-flex justify-content-center align-items-center">
+                                <div class="d-flex text-left align-items-center w-100">
+                                    <strong class="sl">Thể loại</strong>
+                                    <select id="multiple-checkboxesss" multiple="multiple" name="type">
+                                        <option th:each="type : ${typeList}" th:value="${type.id}"
+                                                th:text="${type.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div><span class="form-message"></span></div>
+                    </div>
+
+
+                    <div class=" form-group g-2 col">
+                        <div class="row  ">
+                            <div class=" d-flex justify-content-center align-items-center">
+                                <div class="d-flex text-left align-items-center w-100">
+                                    <strong class="sl">Đạo diễn</strong>
+                                    <select id="multiple-checkboxess" multiple="multiple" name="director">
+                                        <option th:each="director : ${directorList}" th:value="${director.id}"
+                                                th:text="${director.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div><span class="form-message"></span></div>
+                    </div>
+
+                </div>
 
                 <br>
                 <div class="row" style="margin-top: -4px;margin-left: -3px">
@@ -204,42 +226,52 @@
                             <span id="imageFvl" style="color: red ; margin: 10px 0px 0px 0px"></span>
                         </div>
                     </div>
-                    <div class="row g-2 col">
-                        <div class="col-md">
-                            <div class="form-floating" style="margin-left: 107px">
-                                <input type="number" class="form-control" th:field="*{namphathanh}" required>
-                                <label>Năm phát hành</label>
+                    <div class="  g-2 col form-group ">
+                        <div class=" row ">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                            <textarea type="text" id="motaa" name="motaa" class="form-control"
+                                                      th:field="*{description}"
+                                                      style="height: 100px"></textarea>
+                                    <label>Mô tả</label>
+                                </div>
+
                             </div>
 
                         </div>
+                        <div><span class="form-message"></span></div>
                     </div>
+
                 </div>
                 <br>
-                <br>
                 <div class="row" style="margin-top: -4px;margin-left: -3px">
+
+                    <!--                    <div></div>-->
                     <div class="row g-2 col" id="movieTypeDiv"
                          style="margin-top: -4px;margin-left: -3px; display: none">
-                        <div class="row g-2 col">
+                        <div class="row g-2 col form-group">
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" th:field="*{link}"
+                                    <input type="text" id="linkk" name="linkk" class="form-control" th:field="*{link}"
                                            style="width: 585px;">
                                     <label>Link phim</label>
                                 </div>
 
                             </div>
+                            <div><span class="form-message"></span></div>
                         </div>
                     </div>
                     <div class="row g-2 col" id="episodess" style="margin-top: -4px;margin-left: -3px; display: none">
-                        <div class="row g-2 col">
+                        <div class="row g-2 col form-group">
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input type="number" class="form-control" th:field="*{episodes}"
+                                    <input type="number" id="episodesss"  name="episodesss" class="form-control" th:field="*{episodes}"
                                            style="width: 585px;">
                                     <label>Số tập phim</label>
                                 </div>
 
                             </div>
+                            <div><span class="form-message"></span></div>
                         </div>
                     </div>
                 </div>
@@ -249,14 +281,18 @@
                 <br>
             </form>
         </div>
+
+        </form>
+
         <br>
-        <table class="table table-bordered" style="width: 1250px">
+        <table class="table table-bordered" style="width: 99%">
             <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Tên phim</th>
                 <th scope="col">Thời lượng phim</th>
                 <th scope="col">Số tập phim</th>
+                <th scope="col">Kiểu phim</th>
                 <th scope="col">Hình ảnh</th>
                 <th scope="col">Acction</th>
 
@@ -268,7 +304,8 @@
                     <td th:text="${index.count}"></td>
                     <td>[[${movie.name}]]</td>
                     <td>[[${movie.duration}]]</td>
-                    <td>[[${movie.episodes}]]</td>
+                    <td>[[${movie.episodes}]] (tập)</td>
+                    <td>[[${movie.style.name}]]</td>
                     <td><img th:src="@{'http://localhost:8080/admin/assets/img/' + ${movie.image}}"
                              style="width: 50px; height: 50px"></td>
                     <td>
@@ -288,6 +325,18 @@
                             >
                                 <i class="bx bxs-trash"></i>
                             </button>
+                        </a>
+                        <a>
+                            <div th:if="${movie.episodes > 1}">
+                                <button style="margin-top: -70px; margin-left: 122px;" class="btn btn-outline-primary">
+                                    <a style="color: black" th:href="@{'/movie/' + ${movie.id}}">Thêm tập</a>
+                                </button>
+                            </div>
+                            <div th:if="${movie.episodes == 1}">
+                                <!-- Your content here when movie has only 1 episode -->
+                            </div>
+
+
                         </a>
                     </td>
                 </tr>
@@ -339,7 +388,8 @@
                             <br>
                             <div class="row g-2 col">
                                 <label class="form-label"> Link phim</label>
-                                <input type="text" class="form-control" id="linkInput" name="link" th:value="${movie.link}"
+                                <input type="text" class="form-control" id="linkInput" name="link"
+                                       th:value="${movie.link}"
                                        required>
                             </div>
                         </div>
@@ -435,21 +485,32 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="date">
-                                <label>Hình ảnh</label>
-                                <input name="image" type="file" id="image1" hidden />
-                                <img id="img1" th:src="@{'http://localhost:8080/admin/assets/img/' + ${movie.image}}" alt=""
-                                     style="border-radius: 10px; filter: drop-shadow(2px 4px 6px black);margin: -20px 0px -70px 70px"
-                                     height="100" width="90"
-                                     th:if="${movie.image != null}"
-                                >
+                        <div class="row" style="margin-left: 1px">
+                            <div class="col-md-6">
+                                <div class="date">
+                                    <label>Hình ảnh</label>
+                                    <input name="image" type="file" id="image1" hidden/>
+                                    <img id="img1"
+                                         th:src="@{'http://localhost:8080/admin/assets/img/' + ${movie.image}}"
+                                         alt=""
+                                         style="border-radius: 10px; filter: drop-shadow(2px 4px 6px black);margin: -20px 0px -70px 70px"
+                                         height="100" width="90"
+                                         th:if="${movie.image != null}"
+                                    >
+                                </div>
+                                <div class="img-Service" style="margin: 10px 0px 20px -20px">
+                                    <label for="image1" class="btnUploadService">Upload Image</label>
+                                </div>
+                                <input name="image" th:value="${movie.image}" th:if="${movie.image != null}" hidden/>
                             </div>
-                            <div class="img-Service" style="margin: 10px 0px 20px -20px">
-                                <label for="image1" class="btnUploadService">Upload Image</label>
+                            <div class="row g-2 col">
+                                <label class="form-label"> Năm phát hành</label>
+                                <input type="text" class="form-control" id="namphathanh" name="namphathanh"
+                                       th:value="${movie.namphathanh}"
+                                       required>
                             </div>
-                            <input name="image" th:value="${movie.image}" th:if="${movie.image != null}" hidden/>
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Thoát</button>
                             <button type="submit" class="btn btn-primary">Sửa</button>
@@ -472,6 +533,8 @@
 <script th:src="@{/admin/js/bootstrap.min.js}"></script>
 <script th:src="@{/admin/js/bootstrap-multiselect.js}"></script>
 <script th:src="@{/admin/js/main.js}"></script>
+<script th:src="@{/admin/js/movie.js}"></script>
+
 
 
 <script>
@@ -514,11 +577,10 @@
     });
 
 
-
     let buttonElement = document.querySelector('button.btn-outline-primary');
 
     // Adding an event listener to the button for the 'click' event
-    buttonElement.addEventListener('click', function() {
+    buttonElement.addEventListener('click', function () {
         // Retrieving the input value when the button is clicked
         let linkInput = document.getElementById("linkInput");
         let linkValue = linkInput.value;
@@ -534,6 +596,58 @@
         }
     });
 
+    // document.querySelector('.btn.btn-primary').addEventListener('click', function() {
+    //     var dropdown = document.querySelector('select[name="nation"]');
+    //     var selectedOption = dropdown.options[dropdown.selectedIndex].text;
+    //     alert('Selected option: ' + selectedOption);
+    // });
 
+
+    // Validator({
+    //     form: '#form-1',
+    //     formGroup: '.form-group',
+    //     errorSelect: '.form-message',
+    //     rules: [
+    //         Validator.isRequired('#fullname', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#durationn', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#trailerr', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#namphathanhh', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#trangthaii', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#quocgiaa', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#kieuphimm', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#multiple-checkboxes', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#multiple-checkboxess', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#multiple-checkboxesss', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#motaa', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#linkk', 'Không được để trống trường hợp này'),
+    //         Validator.isRequired('#episodesss', 'Không được để trống trường hợp này'),
+    //
+    //
+    //     ],
+    //     onSubmit: function (data) {
+    //         console.log(data)
+    //     }
+    // });
+
+    Validator({
+        form: '#form-1',
+        formGroup: '.form-group',
+        errorSelect: '.form-message',
+        rules: [
+            Validator.isRequired('#fullname', 'Không được để trống trường hợp này'),
+            Validator.isRequired('#email'),
+            Validator.isRequired('#province'),
+            Validator.isEmail('#email'),
+            Validator.minLength('#password', 3),
+            Validator.isRequired('#password_confirmation'),
+            Validator.isRequired('input[name="gender"]'),
+            Validator.isConfirmed('#password_confirmation', function () {
+                return document.querySelector('#form-1 #password').value;
+            }, 'Mật khẩu nhập lại không chính xác')
+        ],
+        onSubmit: function (data) {
+            console.log(data)
+        }
+    });   //doi tuong Validator
 </script>
 </html>

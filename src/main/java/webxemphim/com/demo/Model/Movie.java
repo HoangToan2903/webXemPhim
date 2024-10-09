@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +37,9 @@ public class Movie {
 
     @Column(name = "status")
     private Integer status;
+
+    @Column(name = "start_date")
+    private LocalDateTime start_date;
 
     @Column(name = "description", length = 1000)
     private String description;

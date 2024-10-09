@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-style: normal;
+    background-color: rgb(117, 117, 117);
+    /* background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhRov9sJhisgJJAnuECBU5arHUUUadM8duVcKjbD3pJtRQPPvze-sRUKcI9Fjo7deWuF_usDtJdrnoIOMxd20d9JNl2EQsO3vq8fhBpT8jvc_3KcA4wakV-DgEefDU9t-Vc-HGM93soNYqWkl3cLwh6CSZXvO51O7pEh77F1W0QWXv9MJrHLZkliYPyi5ro/s1920/Fondo%20cpu%20degrade%201.png"); */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* color: #ffffff; */
+}
+
+
+
+/* hoome */
+
+.home {
+    max-width: 75%;
+    background: #595959;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    margin-top: 87px;
+}
+
+.product-list-container {
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: #333 #ccc;
+    cursor: pointer;
+}
+
+.product-list {
+    display: flex;
+    flex-direction: row;
+}
+
+.product-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 240px;
+    margin: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.new-badge {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: #FF5733;
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 0.8em;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+
+/* Style scrollbar for Chrome, Safari, and Opera */
+.product-list-container::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.product-list-container::-webkit-scrollbar-thumb {
+    background: #333;
+}
+
+.product-list-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.product-list-container::-webkit-scrollbar-track {
+    background: #ccc;
+}
+
+.scroll-icon {
+    font-size: 2em;
+    cursor: pointer;
+    margin-left: 20px;
+    /* Spacing between the container and the arrow */
+}
+
+@media screen and (max-width: 600px) {
+    .product-card {
+        width: 90%;
+        margin: 10px;
+    }
+}
+
+h1 {
+    padding: 20px;
+    color: var(--text);
+    font-size: 50px;
+}
+
+.slider {
+    max-width: 1100px;
+    /* height: 427px; */
+    display: flex;
+    background: transparent;
+    max-width: 75%;
+    background: #595959;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    /* margin-top: 87px; */
+}
+.slider .card {
+    flex: 1;
+    margin: 0 10px;
+    background: var(--card-bg);
+    border: var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.slider .card .img {
+    height: 200px;
+    margin: 16px;
+    width: calc(100% - 32px);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+.slider .card .img:hover {
+    filter: brightness(75%);
+}
+.slider .card .img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: all 0.2s ease-in-out;
+}
+
+.slider .card .img img:hover {
+    transform: scale(1.1); /* Scale up by 10% on hover */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.slider .card .content {
+    padding: 10px 20px;
+}
+.card .content .title {
+    text-align: justify;
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--text);
+    color: white;
+
+}
+.card .content .sub-title {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--sub-text);
+    line-height: 20px;
+    text-align: left;
+    color: white;
+
+}
+
+.card .content p {
+    text-align: justify;
+    margin: 10px 0;
+    color: var(--sub-text);
+    line-height: 1.5; /* Adjust the line height as needed */
+    max-height: 6em; /* 4 lines multiplied by the line height (adjust as needed) */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    color: white;
+
+}
+
+.card .content button {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    bottom: 10px;
+    right: 24px;
+    font-size: 20px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: bottom 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.card:hover button {
+    bottom: 15px;
+    opacity: 1;
+}
