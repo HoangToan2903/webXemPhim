@@ -629,25 +629,6 @@
     //     }
     // });
 
-    Validator({
-        form: '#form-1',
-        formGroup: '.form-group',
-        errorSelect: '.form-message',
-        rules: [
-            Validator.isRequired('#fullname', 'Không được để trống trường hợp này'),
-            Validator.isRequired('#email'),
-            Validator.isRequired('#province'),
-            Validator.isEmail('#email'),
-            Validator.minLength('#password', 3),
-            Validator.isRequired('#password_confirmation'),
-            Validator.isRequired('input[name="gender"]'),
-            Validator.isConfirmed('#password_confirmation', function () {
-                return document.querySelector('#form-1 #password').value;
-            }, 'Mật khẩu nhập lại không chính xác')
-        ],
-        onSubmit: function (data) {
-            console.log(data)
-        }
-    });   //doi tuong Validator
+
 </script>
 </html>
