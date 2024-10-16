@@ -23,6 +23,8 @@
 
     <div class="col-sm-10">
         <h1>Phim</h1>
+<!--        <img th:src="@{/img/coffee1.png}" style="width:100%;" alt="Slide 1">-->
+
         <hr>
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
             <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -310,8 +312,8 @@
                     <td>[[${movie.duration}]]</td>
                     <td>[[${movie.episodes}]] (tập)</td>
                     <td>[[${movie.style.name}]]</td>
-                    <td><img th:src="@{'http://localhost:8080/admin/assets/img/' + ${movie.image}}"
-                             style="width: 50px; height: 50px"></td>
+                    <td> <img th:src="@{'http://localhost:8080/img/' + ${movie.image}}"
+                              style="width: 50px; height: 50px"></td>
                     <td>
                         <a>
                             <button style="height: 40px"
@@ -617,7 +619,7 @@
     //     alert('Selected option: ' + selectedOption);
     // });
 
-
+    //
     // Validator({
     //     form: '#form-1',
     //     formGroup: '.form-group',
