@@ -2,11 +2,15 @@ package webxemphim.com.demo.Controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import webxemphim.com.demo.Model.Nation;
+import webxemphim.com.demo.Model.Style;
 import webxemphim.com.demo.Service.NationService;
 
 import java.util.List;
@@ -20,9 +24,10 @@ public class NationController {
 
 
     @GetMapping("/findAll")
-    public String FindAll(Model model, Nation nation){
-        List<Nation> nationList = nationService.findAll();
-        model.addAttribute("nationList",nationList);
+    public String FindAll(Model model,  @PageableDefault(size = 5) Pageable pageable) {
+//        List<Type> typeList = typeService.findAll();
+        Page<Nation> nationList = nationService.findAllPage(pageable.getPageNumber(), pageable.getPageSize());
+        model.addAttribute("nationList", nationList);
         model.addAttribute("nation", new Nation());
 
         return "admin/ViewNation";

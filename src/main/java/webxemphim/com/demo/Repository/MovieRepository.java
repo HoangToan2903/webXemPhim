@@ -11,7 +11,7 @@ public interface MovieRepository extends JpaRepository<Movie, String> {
 
     String movie = ("SELECT * FROM webxemphim.movie\n" +
             "ORDER BY start_date DESC\n" +
-            "LIMIT 2;");
+            "LIMIT 10;");
     @Query(value = movie, nativeQuery = true)
     List<Movie> movieNew();
 
@@ -40,7 +40,7 @@ public interface MovieRepository extends JpaRepository<Movie, String> {
     String movieBo = ("select DISTINCT m.* \n" +
             "from webxemphim.movie m \n" +
             "JOIN webxemphim.movie_style ms on m.style_id = ms.id\n" +
-            "where ms.name = 'Phim bộ'\n" +
+            "where ms.name like 'Phim bộ' and m.status like '1'\n" +
             "order by m.start_date desc limit 10 ");
     @Query(value = movieBo, nativeQuery = true)
     List<Movie> movieBo();

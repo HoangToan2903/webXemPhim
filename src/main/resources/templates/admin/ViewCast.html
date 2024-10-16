@@ -82,40 +82,49 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tên diễn viên</th>
+                <th scope="col">Diễn viên</th>
                 <th scope="col">Acction</th>
 
             </tr>
             </thead>
             <tbody>
-            <th:block th:each="cast,index : ${castList}">
-                <tr>
-                    <td th:text="${index.count}"></td>
-                    <td>[[${cast.name}]]</td>
-
-                    <td>
-                        <a>
-                            <button
-                                    class="btn btn-outline-primary"
-                                    data-bs-toggle="modal"
-                                    th:attr="data-bs-target='#exampleModal_' + ${cast.id}">
-                                <i class='bx bxs-edit-alt'></i>
-                            </button>
-                        </a>
-                        <a th:href="@{'/cast/delete/' + ${cast.id}}">
-                            <button
-                                    type="button"
-                                    class="btn btn-outline-danger"
-                                    onclick="return confirm('Bạn muốn xóa  !')"
-                            >
-                                <i class="bx bxs-trash"></i>
-                            </button>
-                        </a>
-                    </td>
-                </tr>
-            </th:block>
+            <tr th:each="cast,iterStat  : ${castList}">
+                <td th:text="${castList.number * castList.size + iterStat.index + 1}"></td> <!-- Serial number calculation -->
+                <td>[[${cast.name}]]</td>
+                <td>
+                    <a>
+                        <button
+                                class="btn btn-outline-primary"
+                                data-bs-toggle="modal"
+                                th:attr="data-bs-target='#exampleModal_' + ${cast.id}">
+                            <i class='bx bxs-edit-alt'></i>
+                        </button>
+                    </a>
+                    <a th:href="@{'/cast/delete/' + ${cast.id}}">
+                        <button
+                                type="button"
+                                class="btn btn-outline-danger"
+                                onclick="return confirm('Bạn muốn xóa  !')"
+                        >
+                            <i class="bx bxs-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
             </tbody>
         </table>
+        <div  class="row">
+             <span class="mb-5 col " th:if="${castList.hasPrevious()}">
+            <a class="btn btn-primary" th:href="@{/cast/findAll(page=${castList.number - 1})}">Previous</a>
+            </span>
+            <div class="mb-5 col">
+                <p> <span th:text="${castList.number + 1}"></span> / <span
+                        th:text="${castList.totalPages}"></span> </p>
+            </div>
+            <span class="mb-5 col" th:if="${castList.hasNext()}">
+            <a class="btn btn-primary" th:href="@{/cast/findAll(page=${castList.number + 1})}">Next</a>
+            </span>
+        </div>
     </div>
 
 </div>

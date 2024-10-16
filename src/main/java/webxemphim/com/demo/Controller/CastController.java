@@ -2,6 +2,9 @@ package webxemphim.com.demo.Controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import webxemphim.com.demo.Model.Cast;
 import webxemphim.com.demo.Model.Director;
 import webxemphim.com.demo.Model.Nation;
+import webxemphim.com.demo.Model.Style;
 import webxemphim.com.demo.Service.CastService;
 import webxemphim.com.demo.Service.NationService;
 import webxemphim.com.demo.Util.UploadImage;
@@ -26,9 +30,10 @@ public class CastController {
     private UploadImage uploadImage;
 
     @GetMapping("/findAll")
-    public String FindAll(Model model, Cast nation){
-        List<Cast> castList = castService.findAll();
-        model.addAttribute("castList",castList);
+    public String FindAll(Model model,  @PageableDefault(size = 5) Pageable pageable) {
+//        List<Type> typeList = typeService.findAll();
+        Page<Cast> castList = castService.findAllPage(pageable.getPageNumber(), pageable.getPageSize());
+        model.addAttribute("castList", castList);
         model.addAttribute("cast", new Cast());
 
         return "admin/ViewCast";

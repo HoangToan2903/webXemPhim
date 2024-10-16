@@ -2,6 +2,8 @@ package webxemphim.com.demo.Controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,7 @@ import webxemphim.com.demo.Service.NationService;
 import webxemphim.com.demo.Service.StyleService;
 
 import java.util.List;
+import org.springframework.data.domain.Pageable;
 
 @Controller
 @RequestMapping("/style")
@@ -21,9 +24,10 @@ public class StyleController {
 
 
     @GetMapping("/findAll")
-    public String FindAll(Model model, Style style){
-        List<Style> styleList = styleService.findAll();
-        model.addAttribute("styleList",styleList);
+    public String FindAll(Model model,  @PageableDefault(size = 5) Pageable pageable) {
+//        List<Type> typeList = typeService.findAll();
+        Page<Style> styleList = styleService.findAllPage(pageable.getPageNumber(), pageable.getPageSize());
+        model.addAttribute("styleList", styleList);
         model.addAttribute("style", new Style());
 
         return "admin/ViewStyle";

@@ -68,7 +68,8 @@
                     <div class="row g-2 col form-group">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="fullname" name="fullname" th:field="*{name}">
+                                <input type="text" class="form-control" id="fullname" name="fullname"
+                                       th:field="*{name}">
                                 <label>Tên phim</label>
                             </div>
                             <span class="form-message"></span>
@@ -78,7 +79,8 @@
                     <div class="row g-2 col form-group">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="number" class="form-control" id="durationn" name="durationn" th:field="*{duration}">
+                                <input type="number" class="form-control" id="durationn" name="durationn"
+                                       th:field="*{duration}">
                                 <label>Thời lượng phim</label>
                             </div>
                             <span class="form-message"></span>
@@ -90,7 +92,8 @@
                     <div class="row g-2 col form-group">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="trailerr" name="trailerr" th:field="*{trailer}">
+                                <input type="text" class="form-control" id="trailerr" name="trailerr"
+                                       th:field="*{trailer}">
                                 <label>Trailer phim</label>
                             </div>
                             <span class="form-message"></span>
@@ -101,7 +104,8 @@
                     <div class="row g-2 col form-group">
                         <div class="col-md">
                             <div class="form-floating">
-                                <input type="number" class="form-control" id="namphathanhh" name="namphathanhh" th:field="*{namphathanh}">
+                                <input type="number" class="form-control" id="namphathanhh" name="namphathanhh"
+                                       th:field="*{namphathanh}">
                                 <label>Năm phát hành</label>
                             </div>
                             <span class="form-message"></span>
@@ -265,7 +269,8 @@
                         <div class="row g-2 col form-group">
                             <div class="col-md">
                                 <div class="form-floating">
-                                    <input type="number" id="episodesss"  name="episodesss" class="form-control" th:field="*{episodes}"
+                                    <input type="number" id="episodesss" name="episodesss" class="form-control"
+                                           th:field="*{episodes}"
                                            style="width: 585px;">
                                     <label>Số tập phim</label>
                                 </div>
@@ -277,12 +282,11 @@
                 </div>
 
                 <br>
-                <button style="height: 40px" class="btn btn-primary" type="submit">Thêm</button>
+                <button style="height: 40px" class="btn btn-primary">Thêm</button>
                 <br>
             </form>
         </div>
 
-        </form>
 
         <br>
         <table class="table table-bordered" style="width: 99%">
@@ -299,9 +303,9 @@
             </tr>
             </thead>
             <tbody>
-            <th:block th:each="movie,index : ${movieList}">
+            <th:block th:each="movie,iterStat : ${movieList}">
                 <tr>
-                    <td th:text="${index.count}"></td>
+                    <td th:text="${movieList.number * movieList.size + iterStat.index + 1}"></td> <!-- Serial number calculation -->
                     <td>[[${movie.name}]]</td>
                     <td>[[${movie.duration}]]</td>
                     <td>[[${movie.episodes}]] (tập)</td>
@@ -343,6 +347,18 @@
             </th:block>
             </tbody>
         </table>
+        <div  class="row">
+             <span class="mb-5 col " th:if="${movieList.hasPrevious()}">
+            <a class="btn btn-primary" th:href="@{/movie/findAll(page=${movieList.number - 1})}">Previous</a>
+            </span>
+            <div class="mb-5 col">
+                <p> <span th:text="${movieList.number + 1}"></span> / <span
+                        th:text="${movieList.totalPages}"></span> </p>
+            </div>
+            <span class="mb-5 col" th:if="${movieList.hasNext()}">
+            <a class="btn btn-primary" th:href="@{/movie/findAll(page=${movieList.number + 1})}">Next</a>
+            </span>
+        </div>
     </div>
 
 </div>
@@ -536,7 +552,6 @@
 <script th:src="@{/admin/js/movie.js}"></script>
 
 
-
 <script>
 
     var inputImg = document.getElementById('image');
@@ -624,9 +639,9 @@
     //
     //
     //     ],
-    //     onSubmit: function (data) {
-    //         console.log(data)
-    //     }
+    //     // onSubmit: function (data) {
+    //     //     console.log(data)
+    //     // }
     // });
 
 

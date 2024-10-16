@@ -1,6 +1,9 @@
 package webxemphim.com.demo.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import webxemphim.com.demo.Model.Style;
 import webxemphim.com.demo.Model.Type;
@@ -18,6 +21,12 @@ public class StyleService {
     public List<Style> findAll(){
         return styleRepository.findAll();
     }
+
+    public Page<Style> findAllPage(int page, int size){
+        Pageable pageable = PageRequest.of(page, size);
+        return styleRepository.findAll(pageable);
+    }
+
 
     public Style SaveStyle(Style style){
         return styleRepository.save(style);

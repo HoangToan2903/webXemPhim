@@ -74,14 +74,14 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col"> Quốc gia</th>
+                <th scope="col">Quốc gia</th>
                 <th scope="col">Acction</th>
 
             </tr>
             </thead>
             <tbody>
-            <tr th:each="nation,index : ${nationList}">
-                <td th:text="${index.count}"></td>
+            <tr th:each="nation,iterStat  : ${nationList}">
+                <td th:text="${nationList.number * nationList.size + iterStat.index + 1}"></td> <!-- Serial number calculation -->
                 <td>[[${nation.name}]]</td>
                 <td>
                     <a>
@@ -105,6 +105,18 @@
             </tr>
             </tbody>
         </table>
+        <div  class="row">
+             <span class="mb-5 col " th:if="${nationList.hasPrevious()}">
+            <a class="btn btn-primary" th:href="@{/nation/findAll(page=${nationList.number - 1})}">Previous</a>
+            </span>
+            <div class="mb-5 col">
+                <p> <span th:text="${nationList.number + 1}"></span> / <span
+                        th:text="${nationList.totalPages}"></span> </p>
+            </div>
+            <span class="mb-5 col" th:if="${nationList.hasNext()}">
+            <a class="btn btn-primary" th:href="@{/nation/findAll(page=${nationList.number + 1})}">Next</a>
+            </span>
+        </div>
     </div>
 
 </div>

@@ -4,6 +4,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,8 +48,8 @@ public class MovieController {
     private Movie_EpisodesService movie_episodesService;
 
     @GetMapping("/findAll")
-    public String FindAll(Model model) {
-        List<Movie> movieList = movieService.findAll();
+    public String FindAll(Model model,  @PageableDefault(size = 10) Pageable pageable) {
+        Page<Movie> movieList = movieService.findAllPage(pageable.getPageNumber(), pageable.getPageSize());
         model.addAttribute("movieList", movieList);
 
         List<Nation> nationList = nationService.findAll();

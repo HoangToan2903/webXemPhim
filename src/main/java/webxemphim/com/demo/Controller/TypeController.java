@@ -2,14 +2,17 @@ package webxemphim.com.demo.Controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import webxemphim.com.demo.Model.Nation;
 import webxemphim.com.demo.Model.Type;
-import webxemphim.com.demo.Service.NationService;
 import webxemphim.com.demo.Service.TypeService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 
 import java.util.List;
 
@@ -22,19 +25,20 @@ public class TypeController {
 
 
     @GetMapping("/findAll")
-    public String FindAll(Model model, Type type){
-        List<Type> typeList = typeService.findAll();
-        model.addAttribute("typeList",typeList);
-        model.addAttribute("tye", new Type());
+    public String FindAll(Model model, Type type, @PageableDefault(size = 5) Pageable pageable) {
+//        List<Type> typeList = typeService.findAll();
+        Page<Type> typeList = typeService.findAllPage(pageable.getPageNumber(), pageable.getPageSize());
+        model.addAttribute("typeList", typeList);
+        model.addAttribute("type", new Type());
 
         return "admin/ViewType";
     }
 
     @PostMapping("/save")
     public String SaveNation(Model model,
-                             @RequestParam(name="id") String id,
+                             @RequestParam(name = "id") String id,
                              @RequestParam(name = "name") String name,
-                             RedirectAttributes ra){
+                             RedirectAttributes ra) {
 
         try {
             Type type = Type.builder()

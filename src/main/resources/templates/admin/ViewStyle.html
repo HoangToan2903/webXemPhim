@@ -65,7 +65,7 @@
                     <div class="col-md">
                         <div class="form-floating">
                             <input class="form-control" th:field="*{name}" required>
-                            <label for="name">Tên diễn viên</label>
+                            <label for="name">Tên kiểu phim</label>
                         </div>
 
                     </div>
@@ -82,40 +82,49 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tên diễn viên</th>
+                <th scope="col">Kiểu phim</th>
                 <th scope="col">Acction</th>
 
             </tr>
             </thead>
             <tbody>
-            <th:block th:each="style,index : ${styleList}">
-                <tr>
-                    <td th:text="${index.count}"></td>
-                    <td>[[${style.name}]]</td>
-
-                    <td>
-                        <a>
-                            <button
-                                    class="btn btn-outline-primary"
-                                    data-bs-toggle="modal"
-                                    th:attr="data-bs-target='#exampleModal_' + ${style.id}">
-                                <i class='bx bxs-edit-alt'></i>
-                            </button>
-                        </a>
-                        <a th:href="@{'/style/delete/' + ${style.id}}">
-                            <button
-                                    type="button"
-                                    class="btn btn-outline-danger"
-                                    onclick="return confirm('Bạn muốn xóa  !')"
-                            >
-                                <i class="bx bxs-trash"></i>
-                            </button>
-                        </a>
-                    </td>
-                </tr>
-            </th:block>
+            <tr th:each="style,iterStat  : ${styleList}">
+                <td th:text="${styleList.number * styleList.size + iterStat.index + 1}"></td> <!-- Serial number calculation -->
+                <td>[[${style.name}]]</td>
+                <td>
+                    <a>
+                        <button
+                                class="btn btn-outline-primary"
+                                data-bs-toggle="modal"
+                                th:attr="data-bs-target='#exampleModal_' + ${style.id}">
+                            <i class='bx bxs-edit-alt'></i>
+                        </button>
+                    </a>
+                    <a th:href="@{'/style/delete/' + ${style.id}}">
+                        <button
+                                type="button"
+                                class="btn btn-outline-danger"
+                                onclick="return confirm('Bạn muốn xóa  !')"
+                        >
+                            <i class="bx bxs-trash"></i>
+                        </button>
+                    </a>
+                </td>
+            </tr>
             </tbody>
         </table>
+        <div  class="row">
+             <span class="mb-5 col " th:if="${styleList.hasPrevious()}">
+            <a class="btn btn-primary" th:href="@{/style/findAll(page=${styleList.number - 1})}">Previous</a>
+            </span>
+            <div class="mb-5 col">
+                <p> <span th:text="${styleList.number + 1}"></span> / <span
+                        th:text="${styleList.totalPages}"></span> </p>
+            </div>
+            <span class="mb-5 col" th:if="${styleList.hasNext()}">
+            <a class="btn btn-primary" th:href="@{/style/findAll(page=${styleList.number + 1})}">Next</a>
+            </span>
+        </div>
     </div>
 
 </div>

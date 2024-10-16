@@ -1,9 +1,13 @@
 package webxemphim.com.demo.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import webxemphim.com.demo.Model.Director;
 import webxemphim.com.demo.Model.Movie;
+import webxemphim.com.demo.Model.Style;
 import webxemphim.com.demo.Repository.MovieRepository;
 
 import java.time.LocalDateTime;
@@ -18,7 +22,10 @@ public class MovieService {
     public List<Movie> findAll() {
         return movieRepository.findAll();
     }
-
+    public Page<Movie> findAllPage(int page, int size){
+        Pageable pageable = PageRequest.of(page, size);
+        return movieRepository.findAll(pageable);
+    }
     public Movie SaveMovie(Movie movie) {
         return movieRepository.save(movie);
     }
