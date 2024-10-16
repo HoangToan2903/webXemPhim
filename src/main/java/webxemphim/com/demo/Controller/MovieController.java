@@ -72,6 +72,7 @@ public class MovieController {
         return "admin/ViewMovie";
     }
 
+
     @PostMapping("/save")
     public String SaveNation(Model model,
                              @RequestParam(name="id") String id,
